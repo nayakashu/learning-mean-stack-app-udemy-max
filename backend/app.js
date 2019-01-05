@@ -22,7 +22,7 @@ app.post('/api/posts', (req, res) => {
   });
 });
 
-app.use('/api/posts', (req, res, next) => {
+app.get('/api/posts', (req, res) => {
   const posts = [
     { id: 'tugcsi123',
       title: 'First server-side post',
