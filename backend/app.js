@@ -1,9 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const Post = require('./models/post');
 
 const app = express();
+
+mongoose.connect('mongodb+srv://dbuser:dbpassword123@nayakashu-mongodb-atlas-cluster-lpntz.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
+  .then(() => {
+    console.log('Connected to Mongodb Atlas!');
+  })
+  .catch(() => {
+    console.log('Connection to Mongodb Atlas failed!');
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
