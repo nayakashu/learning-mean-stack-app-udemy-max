@@ -6,7 +6,7 @@ const Post = require('./models/post');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://dbuser:dbpassword123@nayakashu-mongodb-atlas-cluster-lpntz.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://dbuser:dbpassword123@nayakashu-mongodb-atlas-cluster-lpntz.mongodb.net/mean-stack-app-udemy-max-db?retryWrites=true', { useNewUrlParser: true })
   .then(() => {
     console.log('Connected to Mongodb Atlas!');
   })
@@ -30,7 +30,7 @@ app.post('/api/posts', (req, res) => {
     title: req.body.title,
     content: req.body.content
   });
-  console.log(post);
+  post.save();
   res.status(201).json({
     message: 'Post added successfully'
   });
