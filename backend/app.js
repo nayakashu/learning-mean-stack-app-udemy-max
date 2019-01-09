@@ -25,17 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/posts', (req, res) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content
-  });
-  post.save();
-  res.status(201).json({
-    message: 'Post added successfully'
-  });
-});
-
+// Get all posts
 app.get('/api/posts', (req, res) => {
   Post.find()
     .then(documents => {
@@ -46,6 +36,22 @@ app.get('/api/posts', (req, res) => {
     });
 });
 
+// Add a post
+app.post('/api/posts', (req, res) => {
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+  post.save()
+    .then(createdPost => {
+      res.status(201).json({
+        message: 'Post added successfully',
+        postId: createdPost._id
+      });
+    });
+});
+
+// Delete a post
 app.delete('/api/posts/:id', (req, res) => {
   Post.deleteOne({ _id: req.params.id })
     .then(result => {
